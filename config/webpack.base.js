@@ -3,35 +3,10 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const webpack = require('webpack')
 const devMode = process.env.NODE_ENV !== 'production'
 
-const webpackPlugins = []
-let externals = {}
-if(devMode){
-    webpackPlugins.push(new HtmlWebpackPlugin({
-        template: paths.rootHtml,
-        filename: 'index.html',
-        inject: true,
-        minify: {
-            removeComments: true,
-            collapseWhitespace: true,
-            collapseInlineTagWhitespace: true,
-        }
-    }))
-}else{
-    externals = {
-        'react': {
-            commonjs: 'react',
-            commonjs2: 'react',
-            root: 'react',
-            amd: 'react'
-        }
-    }
-}
-const fileName = devMode ? 'static/js/[name].[id].[hash].js' : 'index.min.js'
-
 module.exports = {
-    entry: devMode ? paths.testEntry : paths.buildEntry,
+    entry:  paths.entry,
     output: {
-        filename: fileName,
+        filename: 'static/js/[name].[id].[hash].js',
         path: paths.output,
         library: 'jsx-form',
         libraryTarget: 'umd'
@@ -117,11 +92,22 @@ module.exports = {
             // }
         ]
     },
-    plugins: webpackPlugins,
+    plugins: [
+        new HtmlWebpackPlugin({
+            template: paths.rootHtml,
+            filename: 'index.html',
+            inject: true,
+            minify: {
+                removeComments: true,
+                collapseWhitespace: true,
+                collapseInlineTagWhitespace: true,
+            }
+        })
+    ],
     resolve: {
         alias: paths.alias,
         extensions: ['.js', '.jsx', '.css', '.less', '.json'],
         modules: [paths.module],
     },
-    externals,
+    externals: {}
 }

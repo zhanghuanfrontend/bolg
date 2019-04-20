@@ -3,13 +3,10 @@ const path = require('path')
 const resolve = url => path.resolve(__dirname, url)
 
 const proxy = {
-    // '*': 'http://10.8.126.56:8400',
-    '*': 'http://10.224.5.102'
 }
 
 module.exports = {
-    testEntry: resolve('../example/index.js'),
-    buildEntry: resolve('../src/index.js'),
+    entry: resolve('../src/index.js'),
     output: resolve('../dist'),
     srcPath: resolve('../src'),
     testPath: resolve('../example'),
@@ -30,4 +27,5 @@ module.exports = {
         // 'actions': path.resolve(__dirname, '../src/redux/actions'),
     },
     proxy,
+    port: 3015,
 }

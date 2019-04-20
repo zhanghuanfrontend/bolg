@@ -27,7 +27,7 @@ module.exports = {
         hot: true,
         hotOnly: true,
         contentBase: paths.output,
-        port: 3012,
+        port: paths.port,
         proxy: paths.proxy,
         inline: true,
         host: '0.0.0.0'
