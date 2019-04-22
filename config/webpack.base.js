@@ -1,5 +1,6 @@
 const paths = require('./paths')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const markdownRenderer = require('react-markdown-reader').renderer
 const webpack = require('webpack')
 const devMode = process.env.NODE_ENV !== 'production'
 
@@ -23,6 +24,7 @@ module.exports = {
                             cacheDirectory: true,
                             presets: [
                                 ['@babel/preset-env', {
+                                    useBuiltIns: 'usage',
                                     targets: {
                                         browsers: ['ie >= 8']
                                     }
@@ -30,7 +32,7 @@ module.exports = {
                                 '@babel/preset-react'
                             ],
                             plugins: [
-                                '@babel/plugin-transform-runtime',
+                                // '@babel/plugin-transform-runtime',
                                 ["@babel/plugin-proposal-decorators", { "legacy": true }],
                                 ["@babel/plugin-proposal-class-properties", { "loose": true }]
                             ]
@@ -58,6 +60,21 @@ module.exports = {
                         }
                     }
                 ]
+            },
+            {
+                test: /\.md$/,
+                use: [
+                    {
+                        loader: 'html-loader',
+                    },
+                    {
+                        loader: 'markdown-loader',
+                        options: {
+                            pedantic: true,
+                            renderer: markdownRenderer()
+                        }
+                    },
+                ],
             },
             // {
             //     test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
