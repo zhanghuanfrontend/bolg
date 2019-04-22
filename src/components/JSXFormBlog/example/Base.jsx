@@ -1,13 +1,11 @@
 import React from 'react'
 import JSXForm from 'react_jsx_form'
 import { Input, Select, Button, Icon, Radio } from 'antd';
+import {osList, typeList} from './testData'
 const TextArea = Input.TextArea
 const RadioGroup = Radio.Group
 const Option = Select.Option
 import './index.less'
-
-const osList = ['iOS', 'Android', '服务端', 'Wap端', 'Web', 'Mac']
-const typeList = ['string', 'integer', 'float']
 
 export default class Base extends React.Component {
     constructor(){

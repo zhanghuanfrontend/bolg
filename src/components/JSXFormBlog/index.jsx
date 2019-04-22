@@ -4,6 +4,9 @@ import {
     beforePage,
     example,
     directive,
+    custom,
+    scene,
+    principle,
 } from './markdown'
 import { readMarkdown } from 'utils'
 import './index.less'
@@ -12,7 +15,7 @@ export default class JSXFormBlog extends React.Component {
     constructor() {
         super()
         this.state = {
-            curPage: 'example',
+            curPage: 'before',
             catalogList: [],
         }
         this.cache = {}
@@ -34,6 +37,15 @@ export default class JSXFormBlog extends React.Component {
             case 'directive':
                 markdown = directive
                 break
+            case 'custom':
+                markdown = custom
+                break
+            case 'scene':
+                markdown = scene
+                break
+            case 'principle':
+                markdown = principle
+                break
         }
         return readMarkdown(markdown, {
             cache: this.cache,
@@ -52,7 +64,7 @@ export default class JSXFormBlog extends React.Component {
             {title: '实例', key: 'example'},
             {title: '指令', key: 'directive'},
             {title: '自定义指令', key: 'custom'},
-            {title: '对比', key: 'contrast'},
+            {title: '使用场景', key: 'scene'},
             {title: '实现原理', key: 'principle'}
         ]
         return <div className="jsx-form-area">
