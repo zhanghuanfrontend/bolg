@@ -40,6 +40,44 @@ this.state = {
 </JSXForm>
 ```
 
+### 动态属性
+> 在JSX-Form里，表单的中间变量在React是无法访问的，例如： 
+
+```
+<JSXForm>
+    <div v-for="(item, index) in list">
+        <Input disabled={item.name === 'ban'}>
+    </div>
+</JSXForm>
+```
+在上面的代码中，Input组件需要获取表单的中间变量传入到属性中，但是上面的代码会报错，显示**item is not defined**，因为React中是不能获取JSX-Form的中间变量。
+动态属性，就是在表单组件的属性前添加**v-$**前缀，JSX-Form解析到前缀后，就会把指令表达式的值返回给属性。
+
+~~~
+@ path /example/DynamicAttr.jsx
+@ param title 动态属性
+@ param desc 通过动态属性，可以获取到JSX-Form中的中间变量，传入到表单组件的属性。上面的表单，输入ban就会让表单组件禁止输入。
+
+```
+this.state = {
+    formData: {
+        list: [{
+            name: ''
+        }],
+    }
+}
+<JSXForm 
+    value={this.state.formData} 
+    onChange={data => this.setState({formData: data})}>
+    <div v-for="item in list">
+        <Input v-$disabled="item.name === 'ban'" v-model="item.name" v-label="名称" />
+
+    </div>
+</JSXForm>
+```
+~~~
+
+
 ### v-packing
 > v-packing主要是对表单组件的输入和输出做包装处理，一般用于具有复杂输出的表单组件。
 

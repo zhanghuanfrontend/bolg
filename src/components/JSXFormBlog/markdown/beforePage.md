@@ -33,3 +33,19 @@ this.state = {
 />
 ```
 对比可以发现，React表单的修改数据比Vue的v-model要麻烦很多，所以，如果我们在React表单中实现vue的指令，岂不是可以简化表单。
+
+### JSX-Form
+> JSX-Form就是在React表单里实现一些指令，这些指令抽象了表单组件的功能逻辑。<br />
+GitHub地址：[JSX-Form](https://github.com/zhanghuanfrontend/jsx_form)
+
+安装JSX-Form
+```
+npm install react_jsx_form --save
+```
+使用JSX-Form
+```
+import JSXForm from 'react_jsx_form'
+<JSXForm>
+    // 表单内容
+</JSXForm>
+```

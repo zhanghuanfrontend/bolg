@@ -1,11 +1,4 @@
 ## JSX-Form
-### 如何使用
-```
-import JSXForm from 'react_jsx_form'
-<JSXForm>
-    // 表单内容
-</JSXForm>
-```
 ### 代码演示
 ~~~
 @ path /example/Base.jsx

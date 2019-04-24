@@ -8,16 +8,20 @@
 
 ```
 import JSXForm from 'react_jsx_form'
-JSXForm.directive('v-d-options', (elements, value) => {
-    const [list, ReactElement] = value
-    element.props.children = list.map(item => {
-        let label = item, value = item
-        if(item instanceof Object){
-            label = item.label || ''
-            value = item.value || ''
+JSXForm.directive('v-d-options', (Element, value) => {
+    const [list = [], ReactElement] = value
+    return <Element>
+        {
+            list.map(item => {
+                let label = item, value = item
+                if(item instanceof Object){
+                    label = item.label || ''
+                    value = item.value || ''
+                }
+                return <ReactElement key={value} value={value}>{label}</ReactElement>
+            })
         }
-        return <ReactElement key={value} value={value}>{label}</ReactElement>
-    })
+    </Element>
 })
 ```
 
@@ -37,18 +41,14 @@ const osList = ['iOS', 'Android', '服务端', 'Wap端', 'Web', 'Mac']
 
 ```
 import JSXForm from 'react_jsx_form'
-JSXForm.directive('v-d-total', (element, value) => {
+JSXForm.directive('v-d-total', (Element, value) => {
     const [model, label, ...validate] = value
-    const dirList = [
-        {dir: 'v-model', value: model},
-        {dir: 'v-label', value: label},
-        {dir: 'v-validate', value: validate}
-    ]
-    dirList.forEach(item => {
-        if(item.value){
-            element.props[item.dir] = item.value
-        }
-    })
+    const props = {
+        'v-model': model,
+        'v-label': label,
+        'v-validate': validate
+    } 
+    return <Element {...props} />
 })
 ```
 
