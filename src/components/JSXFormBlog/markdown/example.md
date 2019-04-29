@@ -1,7 +1,7 @@
 ## JSX-Form
 ### 代码演示
 ~~~
-@ path /example/Base.jsx
+@ path /example1.0/Base.jsx
 @ param title 一个简单例子
 @ param desc 常见的简单表单
 ```
@@ -34,7 +34,7 @@ this.state = {
 ~~~
 
 ~~~
-@ path /example/Dynamic.jsx
+@ path /example1.0/Dynamic.jsx
 @ param title 动态表单
 @ param desc 通过v-for指令，来实现动态增减表单组件的功能。
 ```
@@ -76,7 +76,7 @@ this.state = {
 ~~~
 
 ~~~
-@ path /example/Packing.jsx
+@ path /example1.0/Packing.jsx
 @ param title 复杂输入表单
 @ param desc 如果表单组件并非只是简单的输入输出，则需要对表单的输入输出值进行包装处理。
 ```
@@ -140,7 +140,7 @@ const vpacking = {
 ~~~
 
 ~~~
-@ path /example/Linkage.jsx
+@ path /example1.0/Linkage.jsx
 @ param title 联动表单
 @ param desc 使用watch，在表单组件的值修改后调用相应注册函数，在注册的函数里实现相应的联动逻辑功能。不过watch只是希望实现简单的逻辑，对于复杂的表单逻辑，最好使用原始的React来处理。
 

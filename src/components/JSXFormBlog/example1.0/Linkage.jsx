@@ -1,5 +1,5 @@
 import React from 'react'
-import JSXForm from 'react_jsx_form'
+import JSXForm from '../../../../JSXForm/index.min.1.2.2'
 import { Select } from 'antd';
 import './index.less'
 

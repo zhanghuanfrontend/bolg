@@ -1,5 +1,5 @@
 import React from 'react'
-import JSXForm from 'react_jsx_form'
+import JSXForm from '../../../../JSXForm/index.min.1.2.2'
 import { Input, Select, Button, Icon, Radio } from 'antd';
 import {osList, typeList} from './testData'
 const TextArea = Input.TextArea

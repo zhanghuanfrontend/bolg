@@ -64,7 +64,7 @@ const osList = ['iOS', 'Android', '服务端', 'Wap端', 'Web', 'Mac']
 有了上面的两个指令后，我们再重复实现开头的栗子。
 
 ~~~
-@ path /example/CustomDir.jsx
+@ path /example1.0/CustomDir.jsx
 @ param title 自定义指令
 @ param desc 使用v-d-options、v-d-total指令来实现一个简单表单。
 

@@ -54,7 +54,7 @@ this.state = {
 动态属性，就是在表单组件的属性前添加**v-$**前缀，JSX-Form解析到前缀后，就会把指令表达式的值返回给属性。
 
 ~~~
-@ path /example/DynamicAttr.jsx
+@ path /example1.0/DynamicAttr.jsx
 @ param title 动态属性
 @ param desc 通过动态属性，可以获取到JSX-Form中的中间变量，传入到表单组件的属性。上面的表单，输入ban就会让表单组件禁止输入。
 
@@ -71,7 +71,6 @@ this.state = {
     onChange={data => this.setState({formData: data})}>
     <div v-for="item in list">
         <Input v-$disabled="item.name === 'ban'" v-model="item.name" v-label="名称" />
-
     </div>
 </JSXForm>
 ```

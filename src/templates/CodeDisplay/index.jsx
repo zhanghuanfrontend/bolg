@@ -14,6 +14,13 @@ export default class CodeDisplay extends React.Component {
         if(this.codeArea && this.codeArea.current){
             hljs.highlightBlock(this.codeArea.current);
         }
+        setTimeout(() => {
+            const codeArea = this.codeArea.current
+            if(codeArea){
+                const displayArea = codeArea.querySelector('#code-display')
+                this.codeWrapHeight = displayArea.offsetHeight
+            }
+        }, 100)
     }
     render() {
         const { title = '', desc = '', code = '' } = this.props
@@ -34,9 +41,12 @@ export default class CodeDisplay extends React.Component {
                 <div className="display-code" onClick={() => this.setState({showCode: !showCode})}>
                     <Icon type="down" className={`${showCode ? 'show-code' : ''}`} />
                 </div>
-                <div className={`code-display-area ${showCode ? 'show-code' : ''}`} 
-                    ref={this.codeArea}
-                    dangerouslySetInnerHTML={{__html: code}}></div>
+                <div className={`code-display-area ${showCode ? 'show-code' : ''}`}
+                    style={{height: showCode ? this.codeWrapHeight : 0}}
+                    ref={this.codeArea}>
+                    <div id="code-display" dangerouslySetInnerHTML={{__html: code}}>
+                    </div>
+                </div>
             </div>
         </div>
     }
