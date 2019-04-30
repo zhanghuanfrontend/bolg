@@ -1,5 +1,5 @@
 import React, { createRef } from 'react'
-import JSXForm from '../../../../JSXForm/index.min.1.2.2'
+import JSXForm from 'JSXForm/index.min.1.2.2.js'
 import { Input, Select, Button, Icon } from 'antd';
 import { paramList, typeList } from './testData'
 import './index.less'

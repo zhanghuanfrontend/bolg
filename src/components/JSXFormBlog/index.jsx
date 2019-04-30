@@ -1,56 +1,39 @@
 import React from 'react'
+import { Select } from 'antd'
 import 'react-markdown-reader/less/highlight.less'
-import {
-    beforePage,
-    example,
-    directive,
-    custom,
-    scene,
-    principle,
-} from './markdown'
 import { readMarkdown } from 'utils'
 import './index.less'
+import { versionList } from './utils/versions'
+
+const Option = Select.Option
 
 export default class JSXFormBlog extends React.Component {
     constructor() {
         super()
+        const len = versionList.length
+        const curDoc = versionList[len - 1]
         this.state = {
-            curPage: 'before',
+            curPage: curDoc.autoPage,
             catalogList: [],
+            curVersion: curDoc.version,
+            curDoc,
         }
         this.cache = {}
     }
     displayPage = () => {
-        const { curPage } = this.state
+        const { curPage, curDoc } = this.state
         if(curPage !== this.cache.curPage){
             this.cache = {}
             this.cache.curPage = curPage
         }
-        let markdown = beforePage
-        switch(curPage){
-            case 'before':
-                markdown = beforePage
-                break
-            case 'example':
-                markdown = example
-                break
-            case 'directive':
-                markdown = directive
-                break
-            case 'custom':
-                markdown = custom
-                break
-            case 'scene':
-                markdown = scene
-                break
-            case 'principle':
-                markdown = principle
-                break
+        const markdown = (curDoc.menuList.find(item => item.key === curPage) || {}).md
+        if(!markdown){
+            return
         }
         return readMarkdown(markdown, {
             cache: this.cache,
             requireFn: (path) => {
-                return require(__dirname + path.trim())
+                return require(__dirname + curDoc.path + path.trim())
             },
             setState: (key, value) => {
                 this.setState({[key]: value})
@@ -58,21 +41,23 @@ export default class JSXFormBlog extends React.Component {
         })
     }
     render() {
-        const { curPage, catalogList } = this.state
-        const menuList = [
-            {title: '前言', key: 'before'},
-            {title: '实例', key: 'example'},
-            {title: '指令', key: 'directive'},
-            {title: '自定义指令', key: 'custom'},
-            {title: '使用场景', key: 'scene'},
-            {title: '实现原理', key: 'principle'}
-        ]
+        const { curPage, catalogList, curVersion, curDoc } = this.state
         return <div className="jsx-form-area">
             <div className="left-side">
-                <div className="menu-header">JSX-Form</div>
+                <div className="menu-header">
+                    JSX-Form
+                    <Select className="version-select" value={curVersion} onChange={value => {
+                        const curDoc = versionList.find(item => item.version === value)
+                        this.setState({curVersion: value, curDoc, catalogList: []})
+                    }}>
+                        {
+                            versionList.map(item => <Option key={item.version} value={item.version}>{item.title}</Option>)
+                        }
+                    </Select>
+                </div>
                 <div className="menu-content">
                     {
-                        menuList.map(item => {
+                        curDoc.menuList.map(item => {
                             return <div className={`menu-item ${item.key === curPage ? 'active' : ''}`} 
                                 key={item.key}
                                 onClick={() => this.setState({curPage: item.key})}

@@ -1,0 +1,116 @@
+.test-area {
+    text-align: center;
+    .test-wrap {
+        border: solid 1px #ddd;
+        padding: 10px 0;
+    }
+    .performance-test {
+        display: flex;
+        height: 250px;
+        overflow: auto;
+        justify-content: space-between;
+        .form-area {
+            flex: 1 1 auto;
+            margin: 0 20px;
+            .form-wrap {
+                .form-group {
+                    width: 100%;
+                    display: flex;
+                    margin: 5px 0;
+                    .label {
+                        width: 60px;
+                        flex: 0 0 auto;
+                    }
+                    .form-item {
+                        flex: 1 1 auto;
+                        overflow: auto;
+                    }
+                }
+            }
+        }
+    }
+    .begin-test {
+        margin-top: 20px;
+    }
+}
+
+.echats-area {
+    .echarts {
+        height: 350px;
+        margin-top: 15px;
+    }
+}
+
+.update-test-area {
+    width: 400px;
+    padding: 20px 30px;
+    .jsx-form-form-item-wrap {
+        overflow: visible !important;
+    }
+    .modify-btn {
+        margin-right: 20px;
+    }
+}
+
+.form-item-input {
+    position: relative;
+    .show-render-info {
+        position: absolute;
+        font-size: 12px;
+        color: #1890ff;
+        right: 0;
+        bottom: -20px;
+    }
+}
+
+
+.dynamic-form-area {
+    width: 450px;
+    padding: 20px 30px;
+    .param-item {
+        border: solid 1px #ddd;
+        padding: 20px;
+        position: relative;
+        border-top: 0;
+        .ant-select {
+            width: 100%;
+        }
+        &:first-child {
+            border-top: solid 1px #ddd;
+        }
+        .param-rows {
+            display: flex;
+            .param-select {
+                flex: 1 1 auto;
+            }
+            .type-select {
+                flex: 0 0 auto;
+                width: 100px;
+                margin-left: 15px;
+            }
+        }
+        .add-btn{
+            position: absolute;
+            left: 0;
+            right: 0;
+            text-align: center;
+            height: 22px;
+            line-height: 20px;
+            border-top: solid 1px #ddd;
+            background: #e9f3f6;
+            bottom: 0;
+            cursor: pointer;
+        }
+        .delete-btn {
+            width: 25px;
+            height: 25px;
+            position: absolute;
+            text-align: center;
+            line-height: 30px;
+            right: 0;
+            top: 0;
+            cursor: pointer;
+            color: #188fff;
+        }
+    }
+}

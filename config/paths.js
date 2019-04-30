@@ -22,6 +22,7 @@ module.exports = {
         // '@': path.resolve(__dirname, '../src/components'),
         'tmp': path.resolve(__dirname, '../src/templates'),
         'utils': path.resolve(__dirname, '../src/utils'),
+        'JSXForm': path.resolve(__dirname, '../JSXForm')
         // 'com': path.resolve(__dirname, '../src/common'),
         // 'apis': path.resolve(__dirname, '../src/apis'),
         // 'actions': path.resolve(__dirname, '../src/redux/actions'),

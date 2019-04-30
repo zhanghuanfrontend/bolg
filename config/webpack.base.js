@@ -1,6 +1,8 @@
 const paths = require('./paths')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const markdownRenderer = require('react-markdown-reader').renderer
+const JSXFormLoader = require('react_jsx_form/dist/loader.js')
+console.log(JSXFormLoader)
 const webpack = require('webpack')
 const devMode = process.env.NODE_ENV !== 'production'
 
@@ -37,6 +39,9 @@ module.exports = {
                                 ["@babel/plugin-proposal-class-properties", { "loose": true }]
                             ]
                         }
+                    },
+                    {
+                        loader: JSXFormLoader,
                     }
                 ]
             },
@@ -76,37 +81,6 @@ module.exports = {
                     },
                 ],
             },
-            // {
-            //     test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
-            //     use: [
-            //         {
-            //             loader: 'url-loader',
-            //             options: {
-            //                 limit: 10000,
-            //                 name: 'static/media/[name].[hash:8].[ext]',
-            //             }
-            //         }
-            //     ]
-            // },
-            // {
-            //     exclude: [
-            //         /\.(config|overrides|variables)$/,
-            //         /\.html$/,
-            //         /\.(js|jsx)$/,
-            //         /\.css$/,
-            //         /\.json$/,
-            //         /\.bmp$/,
-            //         /\.gif$/,
-            //         /\.jpe?g$/,
-            //         /\.png$/,
-            //         /\.scss$/,
-            //         /\.less$/,
-            //     ],
-            //     loader: require.resolve( 'file-loader' ),
-            //     options: {
-            //         name: 'static/media/[name].[hash:8].[ext]',
-            //     },
-            // }
         ]
     },
     plugins: [
@@ -126,5 +100,7 @@ module.exports = {
         extensions: ['.js', '.jsx', '.css', '.less', '.json'],
         modules: [paths.module],
     },
-    externals: {}
+    externals: {
+        echarts: 'echarts'
+    }
 }

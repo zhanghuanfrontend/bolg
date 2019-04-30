@@ -1,5 +1,5 @@
 import React from 'react'
-import JSXForm from '../../../../JSXForm/index.min.1.2.2'
+import JSXForm from 'JSXForm/index.min.1.2.2.js'
 import { Input } from 'antd';
 const TextArea = Input.TextArea
 import './index.less'
