@@ -13,7 +13,8 @@ export default class JSXFormBlog extends React.Component {
         const len = versionList.length
         const curDoc = versionList[len - 1]
         this.state = {
-            curPage: curDoc.autoPage,
+            // curPage: curDoc.autoPage,
+            curPage: 'editing',
             catalogList: [],
             curVersion: curDoc.version,
             curDoc,
@@ -68,21 +69,23 @@ export default class JSXFormBlog extends React.Component {
                     }
                 </div>
             </div>
-            <div className="container">
+            <div className="container" style={{right: catalogList.length > 1 ? 260 : 0}}>
                 {this.displayPage()}
             </div>
-            <div className="right-side">
-                <h3>目录</h3>
-                <ul>
-                    {
-                        catalogList.map((item, idx) => {
-                            return <li key={idx} className={`${item.subMenu ? 'sub-menu' : ''}`}>
-                                <a href={`#${item.id}`}>{item.name}</a>
-                            </li>
-                        })
-                    }
-                </ul>
-            </div>
+            {
+                catalogList.length > 1 && <div className="right-side">
+                    <h3>目录</h3>
+                    <ul>
+                        {
+                            catalogList.map((item, idx) => {
+                                return <li key={idx} className={`${item.subMenu ? 'sub-menu' : ''}`}>
+                                    <a href={`#${item.id}`}>{item.name}</a>
+                                </li>
+                            })
+                        }
+                    </ul>
+                </div>
+            }
         </div>
     }
 }

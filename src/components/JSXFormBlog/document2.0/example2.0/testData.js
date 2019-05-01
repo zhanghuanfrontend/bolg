@@ -59,3 +59,10 @@ export const paramList = [
 export const typeList = ['string', 'integer', 'float']
 
 export const osList = ['iOS', 'Android', '服务端', 'Wap端', 'Web', 'Mac']
+
+export const codeExample = `<JSXForm labelWidth={40} localUpdate={false}>
+    <Input v-model="name" v-label="名称" />
+    <Input v-model="age" v-label="年龄" />
+    <Button type="primary" style={{width: 100}}>提交</Button>
+</JSXForm>
+`

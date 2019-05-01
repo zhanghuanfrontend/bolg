@@ -11,6 +11,7 @@ import {
 import {
     upgrade,
     context,
+    editing,
 } from '../document2.0/markdown'
 
 export const versionList = [
@@ -36,6 +37,7 @@ export const versionList = [
         menuList: [
             {title: '升级内容', key: 'upgrade', md: upgrade},
             {title: '统一上下文', key: 'context', md: context},
+            {title: '在线编辑', key: 'editing', md: editing},
         ]
     }
 ]

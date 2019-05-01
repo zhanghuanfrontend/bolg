@@ -54,13 +54,15 @@
   "dependencies": {
     "antd": "^3.16.2",
     "async-validator": "^1.11.0",
+    "codemirror": "^5.46.0",
     "highlight.js": "^9.15.6",
     "markdown-it": "^8.4.2",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-markdown": "^4.0.8",
     "react-markdown-reader": "^1.1.0",
-    "react_jsx_form": "^2.0.3",
+    "react-syntax-highlighter": "^10.2.1",
+    "react_jsx_form": "^2.0.4",
     "remarkable": "^1.7.1"
   }
 }

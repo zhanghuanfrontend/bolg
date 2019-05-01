@@ -114,3 +114,77 @@
         }
     }
 }
+
+.online-parse-and-exec-area {
+    margin: -20px -30px 0 -30px;
+    .code-editor-and-exec-area {
+        display: flex;
+        height: 400px;
+        align-items: stretch;
+        .code-editor-area {
+            flex: 1 1 auto;
+            overflow: auto;
+            .CodeMirror {
+                height: 100%;
+            }
+        }
+        .exec-code {
+            width: 50px;
+            margin: 0 20px;
+        }
+        .code-display-area {
+            width: 350px;
+            flex: 0 0 auto;
+            padding: 20px;
+            border-bottom: solid 1px #ddd;
+            display: flex;
+            align-items: center;
+            .form-area {
+                flex: 1 1 auto;
+                padding: 20px;
+                border-radius: 4px;
+                min-height: 150px;
+            }
+        }
+    }
+    .exec-code {
+        text-align: center;
+        padding: 15px 0;
+    }
+    .parse-code-header {
+        display: flex;
+        height: 32px;
+        margin-top: -32px;
+        padding-left: 25px;
+        .tab {
+            background: #fff;
+            border: solid 1px #ddd;
+            border-bottom: 0;
+            padding: 0 15px;
+            line-height: 32px;
+            cursor: pointer;
+            &:first-child {
+                border-right: 0;
+            }
+            &.active {
+                background: #1690ff;
+                border-color: #1690ff;
+                color: #fff;
+            }
+        }
+    }
+    .parsed-code-display {
+        height: 450px;
+        overflow: auto;
+        background:#f7f8f9;
+        border-top: solid 1px #ddd;
+        border-bottom: solid 1px #ddd;
+        pre {
+            margin: 0;
+            background:#f7f8f9 !important;
+            code {
+                border: 0;
+            }
+        }
+    }
+}
