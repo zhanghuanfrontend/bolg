@@ -1,6 +1,6 @@
 import React from 'react'
 import { Input } from 'antd'
-import './index.less'
+import '../index.less'
 
 export default class FormItem extends React.Component {
     constructor(){

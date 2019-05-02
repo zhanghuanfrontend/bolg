@@ -1,5 +1,5 @@
 import React from 'react'
-import JSXForm from 'JSXForm/index.min.1.2.2.js'
+import JSXForm from 'react_jsx_form'
 import { Input, Button, Icon } from 'antd'
 import './index.less'
 
@@ -47,12 +47,12 @@ export default class Main extends React.Component {
     }
     render() {
         const { param } = this.state
-        return <div className="base-form-area">
+        return <div className="base-test-form-area">
             <JSXForm 
                 ref={this.JSXForm}
                 value={param}>
                 <div v-for="(item, index) in nameArr">
-                    <Input v-model='item' v-label="输入框" />
+                    <Input v-model='item' v-label={`输入框${index}`} />
                 </div>
             </JSXForm>
         </div>

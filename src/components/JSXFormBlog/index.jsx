@@ -1,7 +1,7 @@
 import React from 'react'
 import { Select } from 'antd'
 import 'react-markdown-reader/less/highlight.less'
-import { readMarkdown } from 'utils'
+import { readMarkdown, addUrlParam, getUrlParam } from 'utils'
 import './index.less'
 import { versionList } from './utils/versions'
 
@@ -12,14 +12,16 @@ export default class JSXFormBlog extends React.Component {
         super()
         const len = versionList.length
         const curDoc = versionList[len - 1]
+        const page = getUrlParam('page')
+        const curPage = page || curDoc.autoPage
         this.state = {
-            // curPage: curDoc.autoPage,
-            curPage: 'editing',
+            curPage: curPage,
             catalogList: [],
             curVersion: curDoc.version,
             curDoc,
         }
         this.cache = {}
+        addUrlParam({page: curPage})
     }
     displayPage = () => {
         const { curPage, curDoc } = this.state
@@ -61,7 +63,10 @@ export default class JSXFormBlog extends React.Component {
                         curDoc.menuList.map(item => {
                             return <div className={`menu-item ${item.key === curPage ? 'active' : ''}`} 
                                 key={item.key}
-                                onClick={() => this.setState({curPage: item.key})}
+                                onClick={() => {
+                                    addUrlParam({page: item.key})
+                                    this.setState({curPage: item.key})
+                                }}
                             >
                                 {item.title}
                             </div>

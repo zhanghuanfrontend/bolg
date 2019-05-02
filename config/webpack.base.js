@@ -2,7 +2,6 @@ const paths = require('./paths')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const markdownRenderer = require('react-markdown-reader').renderer
 const JSXFormLoader = require('react_jsx_form/dist/loader.js')
-console.log(JSXFormLoader)
 const webpack = require('webpack')
 const devMode = process.env.NODE_ENV !== 'production'
 
@@ -81,6 +80,15 @@ module.exports = {
                     },
                 ],
             },
+            { 
+                test: /\.(woff|woff2|eot|ttf|svg|jpg|png|gif)\??.*$/, 
+                loader: 'url-loader',
+                query: {
+                  limit: 8192,
+                  // 生成的文件的存放目录
+                  name: 'static/media/[name].[ext]'
+                }
+              },
         ]
     },
     plugins: [

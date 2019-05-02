@@ -25,7 +25,13 @@ export default class Base extends React.Component {
         const { formData } = this.state
         return <div className="dynamic-form-area">
             <JSXForm value={formData}>
-                <div className="param-item" v-for="(item, index) in paramList">
+                <div className="param-item" v-for="(item, index) in paramList" v-init={[
+                    {
+                        name: '',
+                        type: 'string',
+                        desc: ''
+                    }
+                ]}>
                     <div className="param-rows">
                         <Select v-model="item.name" v-class="param-select" v-label="param">
                             {
@@ -45,7 +51,6 @@ export default class Base extends React.Component {
                         _self.setValue('paramList', paramList)
                     }} v-show={index === _self.getValue('paramList').length - 1}>+</div>
                     <div className="delete-btn" v-show={_self.getValue('paramList').length > 1} onClick={() => {
-                        console.log(index)
                         const paramList = _self.getValue('paramList')
                         paramList.splice(index, 1)
                         _self.setValue('paramList', paramList)

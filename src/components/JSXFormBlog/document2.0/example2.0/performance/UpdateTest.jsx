@@ -2,7 +2,7 @@ import React from 'react'
 import JSXForm from 'react_jsx_form'
 import { Input, Button } from 'antd'
 import FormItem from './FormItem'
-import './index.less'
+import '../index.less'
 
 export default class UpdateTest extends React.Component {
     constructor(){
