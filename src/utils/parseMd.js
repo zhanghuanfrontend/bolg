@@ -68,7 +68,6 @@ const parseExecCode = (code, idName, options) => {
 const parseTableCode = (tableCode, idName) => {
     const params = tableCode.replace(/\s/g, '').replace(/(&quot;|&#39;)/g, '"')
     let config = []
-    console.log(params)
     try {
         config = JSON.parse(params)
     }catch(err){
@@ -109,17 +108,17 @@ export default (mdContent, options, callback) => {
             return '<pre><code>'
         })
         // 读取目录
-        const menuReg = /<(h[23]).*?id="(.*?)">(.*?)<\/\1>/g
-        let match = menuReg.exec(mdContent)
         const catalogList = []
-        while(match){
+        const menuReg = /<(h[23]).*?id="(.*?)">(.*?)<\/\1>/g
+        displayMd = displayMd.replace(menuReg, (match, name, id, content, input) => {
+            const idName = `${id}_${input}`
             catalogList.push({
-                name: match[3],
-                id: match[2],
-                subMenu: match[1] === 'h3'
+                name: content,
+                id: idName,
+                subMenu: name === 'h3'
             })
-            match = menuReg.exec(mdContent)
-        }
+            return `<${name} id="${idName}">${content}</${name}>`
+        })
         setState && setState('catalogList', catalogList)
         // 读取可执行代码
         const execReg = /<p>~{3}([\s\S]*?)~{3}<\/p>/gm

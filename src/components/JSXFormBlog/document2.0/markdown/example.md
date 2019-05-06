@@ -200,7 +200,7 @@ export default class Base extends React.Component {
 ~~~
 @ path /example2.0/example/Linkage.jsx
 @ param title 联动表单
-@ param desc 使用v-packing指令对输入框的输入和输出做格式处理。
+@ param desc 表单内控制逻辑的数据，最好放在\_assistData属性下，在获取表单数据时，JSXForm会自动剔除\_assistData数据。
 
 ```
 export default class Base extends React.Component {
@@ -263,6 +263,39 @@ table [[
     {"title": "指令", "dataIndex": "dir"},
     {"title": "描述", "dataIndex": "desc"}
 ], [
-    {"dir": "v-model", "desc": "绑定表单数据"}
+    {"dir": "v-model", "desc": "绑定表单数据"},
+    {"dir": "v-label", "desc": "添加表单组件label"},
+    {"dir": "v-label-width", "desc": "设置当前组件label的宽度，可以在JSXForm上设置labelWidth属性统一设置"},
+    {"dir": "v-class", "desc": "添加自定义className"},
+    {"dir": "v-validate", "desc": "添加表单验证，使用方法"},
+    {"dir": "v-for", "desc": "重复指令，能重复当前组件"},
+    {"dir": "v-init", "desc": "当前组件初始值，可以在JSXForm设置value属性统一设置初始值"},
+    {"dir": "v-packing", "desc": "对表单组件的输入输出值进行封装"}
 ]]
+
+### 表单校验（v-validate）
+
+> v-validate传入格式为Array，每项为一个校验规则。<br />
+每项校验规则可以是以下格式：<br />
+- String 例如：required、number、boolean、integer、float <br />
+- RegExp <br />
+- Function <br />
+
+```
+<JSXForm>
+    <Input v-model="param" v-validate={['required', /^[a-zA-Z_]+$/g]} />
+</JSXForm>
+```
+
+### 组件初始值（v-init）
+
+> v-init为当前组件设置初始值，也可以在JSXForm上传入value属性统一设置，v-int会覆盖value属性的初始值。
+
+```
+<JSXForm value={{
+    param: 'test'
+}}>
+    <Input v-model="param" v-init="init-value" />
+</JSXForm>
+```
 

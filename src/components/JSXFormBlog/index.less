@@ -71,20 +71,36 @@
             padding-left: 0;
             list-style: none;
             li {
-                padding-left: 35px;
                 font-size: 14px;
-                line-height: 30px;
+                line-height: 35px;
                 cursor: pointer;
+                border-left: solid 2px #fff;
                 &:hover {
                     a {
                         text-decoration: underline;
                     }
                 }
-                &.sub-menu {
-                    padding-left: 55px;
-                }
                 a {
                     text-decoration: none;
+                    display: block;
+                    padding-left: 35px;
+                    color: #333;
+                    &.sub-menu {
+                        padding-left: 55px;
+                    }
+                }
+                &:hover {
+                    background: #f3f3f3;
+                    a {
+                        color: #009a61;
+                    }
+                }
+                &.active {
+                    background: #f3f3f3;
+                    border-color: #009a61;
+                    a {
+                        color: #009a61;
+                    }
                 }
             }
         }

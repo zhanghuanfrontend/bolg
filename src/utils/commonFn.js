@@ -1,5 +1,5 @@
 export const getUrlParam = (key) => {
-    const reg = new RegExp(`\\?.*${key}=?(.*?)(?=&|$)`, 'g')
+    const reg = new RegExp(`\\?.*${key}=?(.*?)(?=&|$|(?=#))`, 'g')
     const url = window.location.href.toString()
     const match = reg.exec(url)
     if(match){
@@ -15,7 +15,7 @@ export const addUrlParam = (params) => {
     keys.forEach(key => {
         const value = typeof params[key] === 'undefined' ? '' : `=${params[key]}`
         if(getUrlParam(key)){
-            const reg = new RegExp(`${key}=?.*?(?=&|$)`, 'g')
+            const reg = new RegExp(`${key}=?.*?(?=&|$|(?=#))`, 'g')
             href = href.replace(reg, (match) => {
                 return `${key}${value}`
             })
@@ -27,3 +27,25 @@ export const addUrlParam = (params) => {
     window.history.replaceState('', '', href);
 }
 
+// 获取URL中的hash值
+export const getUrlHash = () => {
+    const href = window.location.href.toString()
+    const reg = /#(.*?)$/g
+    const match = reg.exec(href)
+    if(match){
+        return match[1]
+    }
+    return false
+}
+
+// 设置URL中的hash值
+export const setUrlHash = (hash) => {
+    let href = window.location.href.toString()
+    if(href.includes('#')){
+        const reg = /#(.*?)$/g
+        href = href.replace(reg, `#${hash}`)
+    }else {
+        href += `#${hash}`
+    }
+    window.history.replaceState('', '', href);
+}

@@ -1,7 +1,7 @@
 import React from 'react'
 import { Select } from 'antd'
 import 'react-markdown-reader/less/highlight.less'
-import { readMarkdown, addUrlParam, getUrlParam } from 'utils'
+import { readMarkdown, addUrlParam, getUrlParam, getUrlHash, setUrlHash } from 'utils'
 import './index.less'
 import { versionList } from './utils/versions'
 
@@ -19,9 +19,52 @@ export default class JSXFormBlog extends React.Component {
             catalogList: [],
             curVersion: curDoc.version,
             curDoc,
+            curMenu: '',
         }
         this.cache = {}
         addUrlParam({page: curPage})
+    }
+    componentDidMount(){
+       document.addEventListener('scroll', this.handleScrollFn)
+    }
+    // 监听滚动
+    handleScrollFn = () => {
+        const { catalogList, curMenu } = this.state
+        if(!catalogList || catalogList.length === 0 || !curMenu){
+            return 
+        }
+        let index = 0
+        const len = catalogList.length
+        catalogList.forEach((item, idx) => {
+            if(item.id === curMenu){
+                index = idx
+            }
+        })
+        const ele = document.getElementById(curMenu)
+        const prevEle = index > 0 ? document.getElementById(catalogList[index - 1].id) : ele
+        const nextEle = index < len - 1 ? document.getElementById(catalogList[index + 1].id) : ele
+        if(!ele || !prevEle || !nextEle){
+            return
+        }
+        const prevTop = prevEle.getBoundingClientRect().top
+        const nextTop = nextEle.getBoundingClientRect().top
+        const top = ele.getBoundingClientRect().top
+        if(top < nextTop && nextTop <= 0){
+            this.setState({curMenu: catalogList[index + 1].id})
+        }else if(prevTop < top && prevTop >= 0){
+            this.setState({curMenu: catalogList[index - 1].id})
+        }
+    }
+    componentWillUpdate(nextProps, nextState){
+        const { catalogList } = nextState
+        if(catalogList && catalogList !== this.state.catalogList){
+            let curMenu = getUrlHash()
+            if(!curMenu || !catalogList.some(item => item.id === curMenu)){
+                curMenu = catalogList[0].id
+                setUrlHash(curMenu)
+            }
+            this.setState({curMenu,})
+        }
     }
     displayPage = () => {
         const { curPage, curDoc } = this.state
@@ -44,7 +87,7 @@ export default class JSXFormBlog extends React.Component {
         })
     }
     render() {
-        const { curPage, catalogList, curVersion, curDoc } = this.state
+        const { curPage, catalogList, curVersion, curDoc, curMenu } = this.state
         return <div className="jsx-form-area">
             <div className="left-side">
                 <div className="menu-header">
@@ -83,8 +126,12 @@ export default class JSXFormBlog extends React.Component {
                     <ul>
                         {
                             catalogList.map((item, idx) => {
-                                return <li key={idx} className={`${item.subMenu ? 'sub-menu' : ''}`}>
-                                    <a href={`#${item.id}`}>{item.name}</a>
+                                return <li key={idx} 
+                                    onClick={() => this.setState({curMenu: item.id})}
+                                    className={`${curMenu === item.id ? 'active' : ''}`}>
+                                    <a 
+                                        className={`${item.subMenu ? 'sub-menu' : ''}`} 
+                                        href={`#${item.id}`}>{item.name}</a>
                                 </li>
                             })
                         }
