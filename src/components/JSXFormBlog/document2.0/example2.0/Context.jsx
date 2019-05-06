@@ -10,43 +10,24 @@ export default class Base extends React.Component {
     constructor(){
         super()
         this.state = {
-            formData: {
-                paramList: [
-                    {
-                        name: '',
-                        type: 'string',
-                        desc: ''
-                    }
-                ]
-            }
+            outputData: {}
         }
     }
     render() {
-        const { formData } = this.state
-        return <div className="dynamic-form-area">
-            <JSXForm value={formData}>
-                <div className="param-item" v-for="(item, index) in paramList" v-init={[
-                    {
-                        name: '',
-                        type: 'string',
-                        desc: ''
-                    }
-                ]}>
+        return <div>
+            <JSXForm className="dynamic-form-area" onChange={(valid, data) => this.setState({outputData: data})}>
+                <div className="param-item" v-for="(item, index) in paramList">
                     <div className="param-rows">
                         <Select v-model="item.name" v-class="param-select" v-label="param">
-                            {
-                                paramList.map(item => <Option value={item.name}>{item.name}</Option>)
-                            }
+                            <Option v-for="paramItem in {paramList}" value={paramItem.name}>{paramItem.name}</Option>
                         </Select>
                         <Select className="type-select" v-model="item.type">
-                            {
-                                typeList.map(item => <Option value={item}>{item}</Option>)
-                            }
+                            <Option v-for="typeItem in {typeList}" value={typeItem}>{typeItem}</Option>
                         </Select>
                     </div>
                     <TextArea v-model="item.desc" v-label="描述" rows="3"></TextArea>
                     <div className="add-btn" onClick={() => {
-                        const paramList = _self.getValue('paramList')
+                        const paramList = _self.getValue('paramList') || []
                         paramList.push({name: '', type: 'integer', desc: ''})
                         _self.setValue('paramList', paramList)
                     }} v-show={index === _self.getValue('paramList').length - 1}>+</div>
@@ -59,6 +40,10 @@ export default class Base extends React.Component {
                     </div>
                 </div>
             </JSXForm>
+            <span>表单输出结果：</span>
+            <pre>
+                <code>{JSON.stringify(this.state.outputData)}</code>
+            </pre>
         </div>
     }
 }

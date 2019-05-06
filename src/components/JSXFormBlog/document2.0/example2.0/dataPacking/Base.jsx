@@ -11,18 +11,20 @@ export default class Base extends React.Component {
         }
     }
     render() {
-        return <div className="data-packing-base">
-            <JSXForm onChange={(valid, data) => this.setState({outputData: data})}>
+        return <div>
+            <JSXForm className="data-packing-base" onChange={(valid, data) => this.setState({outputData: data})}>
                 <Input v-model="name" v-label="name" />
                 <Input v-model="type" v-init="date" v-label="type" />
                 <div v-for="item in list">
                     <Input v-label="param" v-model="item.param" />
                 </div>
             </JSXForm>
-            <span>表单输出结果：</span>
-            <pre>
-                <code>{JSON.stringify(this.state.outputData)}</code>
-            </pre>
+            <div className="output-display-area">
+                <span>表单输出结果：</span>
+                <pre>
+                    <code>{JSON.stringify(this.state.outputData)}</code>
+                </pre>
+            </div>
         </div>
     }
 }

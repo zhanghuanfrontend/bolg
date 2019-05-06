@@ -19,7 +19,7 @@ JSXForm2.x的主要目标就是优化JSXFrom带来的性能问题，从以下两
 + 表单组件局部更新
 
 从目前来看，JSXForm2.x的性能比1.x提升60% ~ 70%：
-![性能优化](/static/images/permance.png)
+![性能优化](/bolg/static/images/permance.png)
 
 具体内容请挪步：[性能优化](/?page=performance)
 

@@ -1,5 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { Table } from 'antd'
 import { Markdown } from 'react-markdown-reader';
 import CodeDisplay from 'tmp/CodeDisplay'
 // 渲染实例代码
@@ -63,6 +64,37 @@ const parseExecCode = (code, idName, options) => {
     cache.code = displayCode
 }
 
+// 读取表格数据
+const parseTableCode = (tableCode, idName) => {
+    const params = tableCode.replace(/\s/g, '').replace(/(&quot;|&#39;)/g, '"')
+    let config = []
+    console.log(params)
+    try {
+        config = JSON.parse(params)
+    }catch(err){
+        console.error('表格配置格式错误')
+    }
+    if(!Array.isArray(config[0]) || !Array.isArray(config[1])){
+        return ''
+    }
+    const columns = config[0].map(item => ({
+        ...item,
+        key: item.dataKey
+    }))
+    const dataSource = config[1].map((item, idx) => ({
+        ...item,
+        key: idx
+    }))
+    const Element = <Table columns={columns} pagination={false} dataSource={dataSource} />
+
+    setTimeout(() => {
+        ReactDOM.render(
+            Element,
+            document.getElementById(idName)
+        )
+    }, 10)
+}
+
 // 解析markdown语法
 export default (mdContent, options, callback) => {
     const { cache, setState } = options
@@ -95,6 +127,13 @@ export default (mdContent, options, callback) => {
             const idName = `exec-code-display-area-${index}`
             parseExecCode(code, idName, options)
             return `<div class="code-display-wrap" id="${idName}"></div>`
+        })
+        // 读取表格
+        const tableReg = /<p>(?:t|T)able\s+([^]*?)<\/p>/g
+        displayMd = displayMd.replace(tableReg, (match, table, index) => {
+            const idName = `table-display-area-${index}`
+            parseTableCode(table, idName)
+            return `<div class="tabel-display-wrap" id="${idName}"></div>`
         })
         cache.md = displayMd
     }
