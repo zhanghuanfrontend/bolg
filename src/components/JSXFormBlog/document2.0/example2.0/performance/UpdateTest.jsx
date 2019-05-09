@@ -22,9 +22,9 @@ export default class UpdateTest extends React.Component {
         const { formData } = this.state
         return <div className="update-test-area">
             <JSXForm value={formData}>
-                <FormItem v-model="name" v-label="name" label="name"/>
-                <Input v-model="os" v-label="os1" />
-                <FormItem v-model="os" v-label="name" label="os2" />
+                <FormItem v-model="name" v-label="名称" label="名称"/>
+                <Input v-model="os" v-label="系统" />
+                <FormItem v-model="os" v-label="系统1" label="系统1" />
                 <Button type="primary" className="modify-btn" onClick={this.modifyForm}>修改name</Button>
                 <Button type="primary" className="modify-btn" onClick={() => {
                     _self.setValue('os', Math.floor(Math.random() * 100))

@@ -16,6 +16,7 @@ import {
     packingData,
     dataChange,
     example2,
+    useDoc,
 } from '../document2.0/markdown'
 
 export const versionList = [
@@ -37,8 +38,9 @@ export const versionList = [
         title: '版本v2',
         version: '2.x',
         path: '/document2.0',
-        autoPage: 'upgrade',
+        autoPage: 'useDoc',
         menuList: [
+            {title: '快速使用', key: 'useDoc', md: useDoc},
             {title: '升级内容', key: 'upgrade', md: upgrade},
             {title: '示例', key: 'example', md: example2},
             {title: '统一上下文', key: 'context', md: context},

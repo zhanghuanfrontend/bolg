@@ -1,50 +1,5 @@
 ## 示例
 
-### 使用方法
-
-安装JSXForm依赖：
-
-```
-npm install react_jsx_form --save
-```
-
-修改webpack配置：
-
-```
-const JSXFormLoader = require('react_jsx_form/dist/loader.js')
-module: {
-    rules: [
-        {
-            test: /\.(js|jsx)$/,
-            use: [
-                {
-                    loader: 'babel-loader',
-                    options: {
-                        ...
-                    }
-                },
-                {
-                    loader: JSXFormLoader,
-                }
-            ]
-        }
-    ]
-}
-```
-
-> 一定要将JSXForm loader放在babel-loader的后面，这样JSXFrom loader先去解析指令，接着再交由babel-loader解析转换成ES5。
-
-使用JSXForm：
-
-```
-import JSXForm from 'react_jsx_form'
-<JSXForm>
-    <Input v-model="name">
-</JSXForm>
-```
-
-### 使用示例
-
 ~~~
 @ path /example2.0/example/Base.jsx
 @ param title 基本例子
@@ -272,6 +227,35 @@ table [[
     {"dir": "v-init", "desc": "当前组件初始值，可以在JSXForm设置value属性统一设置初始值"},
     {"dir": "v-packing", "desc": "对表单组件的输入输出值进行封装"}
 ]]
+
+### JSXForm属性
+
+table [[
+    {"title": "属性", "dataIndex": "dir"},
+    {"title": "描述", "dataIndex": "desc"}
+], [
+    {"dir": "watch", "desc": "统一设置表单数据监听"},
+    {"dir": "value", "desc": "统一设置表单初始值，比v-init优先级低"},
+    {"dir": "labelWidth", "desc": "统一设置表单label宽度，比v-label-width优先级低"},
+    {"dir": "localUpdate", "desc": "是否开启局部刷新，默认为true，如果设置为false，表单数据每次更新，整个JSXForm都会刷新。"},
+    {"dir": "className", "desc": "给JSXForm添加class"},
+    {"dir": "onChange", "desc": "JSXForm表单数据改变时会触发该事件"}
+]]
+
+### JSXForm方法
+
+table [[
+    {"title": "方法", "dataIndex": "dir"},
+    {"title": "描述", "dataIndex": "desc"}
+], [
+    {"dir": "validForm", "desc": "主动校验表单, (key: string) => {} "},
+    {"dir": "initForm", "desc": "重新初始化表单"},
+    {"dir": "getValue", "desc": "获取JSXForm的值，(key?: string) => {}"},
+    {"dir": "setValue", "desc": "修改JSXForm的值，(key: string, value?: any, callback?: function)"},
+    {"dir": "watch", "desc": "添加监听"}
+]]
+
+> JSXForm的方法既可以通过JSXForm的ref实例来调用，也可以在JSXForm内部，通过_self变量进行调用。
 
 ### 表单校验（v-validate）
 

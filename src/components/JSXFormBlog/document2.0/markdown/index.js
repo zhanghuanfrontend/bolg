@@ -5,6 +5,7 @@ import editing from './editing.md'
 import packingData from './packingData.md'
 import dataChange from './dataChange.md'
 import example2 from './example.md'
+import useDoc from './useDoc.md'
 
 export {
     upgrade,
@@ -14,4 +15,5 @@ export {
     packingData,
     dataChange,
     example2,
+    useDoc,
 }

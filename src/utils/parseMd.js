@@ -134,6 +134,15 @@ export default (mdContent, options, callback) => {
             parseTableCode(table, idName)
             return `<div class="tabel-display-wrap" id="${idName}"></div>`
         })
+        // 读取图片
+        const imgReg = /<p><img.*?<\/p>/g
+        displayMd = displayMd.replace(imgReg, (match) => {
+            const newImg = match.replace('<p>', '<p class="img-wrap">')
+            if(process.env.NODE_ENV === 'development'){
+                return newImg
+            }
+            return newImg.replace('src="/static', 'src="/bolg/static')
+        })
         cache.md = displayMd
     }
     return <Markdown>{cache.md}</Markdown>
