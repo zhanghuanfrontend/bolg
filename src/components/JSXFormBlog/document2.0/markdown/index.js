@@ -4,6 +4,7 @@ import context from './context.md'
 import editing from './editing.md'
 import example2 from './example.md'
 import useDoc from './useDoc.md'
+import bg from './bg.md'
 
 export {
     upgrade,
@@ -12,4 +13,5 @@ export {
     performance,
     example2,
     useDoc,
+    bg,
 }

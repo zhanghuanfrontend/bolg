@@ -94,7 +94,12 @@ export default class JSXFormBlog extends React.Component {
                     JSX-Form
                     <Select className="version-select" value={curVersion} onChange={value => {
                         const curDoc = versionList.find(item => item.version === value)
-                        this.setState({curVersion: value, curDoc, catalogList: []})
+                        this.setState({
+                            curVersion: value, 
+                            curDoc, 
+                            catalogList: curDoc.menuList || [],
+                            curPage: curDoc.autoPage
+                        })
                     }}>
                         {
                             versionList.map(item => <Option key={item.version} value={item.version}>{item.title}</Option>)

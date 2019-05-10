@@ -15,6 +15,7 @@ import {
     performance,
     example2,
     useDoc,
+    bg,
 } from '../document2.0/markdown'
 
 export const versionList = [
@@ -36,8 +37,9 @@ export const versionList = [
         title: '版本v2',
         version: '2.x',
         path: '/document2.0',
-        autoPage: 'useDoc',
+        autoPage: 'bg',
         menuList: [
+            {title: 'JSXForm是什么？', key: 'bg', md: bg},
             {title: '快速使用', key: 'useDoc', md: useDoc},
             {title: '升级内容', key: 'upgrade', md: upgrade},
             {title: '示例', key: 'example', md: example2},
