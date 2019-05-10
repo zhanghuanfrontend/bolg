@@ -28,7 +28,7 @@ export default class Base extends React.Component {
                     <TextArea v-model="item.desc" v-label="描述" rows="3"></TextArea>
                     <div className="add-btn" onClick={() => {
                         const paramList = _self.getValue('paramList') || []
-                        paramList.push({name: '', type: 'integer', desc: ''})
+                        paramList.push({desc: ''})
                         _self.setValue('paramList', paramList)
                     }} v-show={index === _self.getValue('paramList').length - 1}>+</div>
                     <div className="delete-btn" v-show={_self.getValue('paramList').length > 1} onClick={() => {

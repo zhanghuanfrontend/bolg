@@ -13,8 +13,6 @@ import {
     context,
     editing,
     performance,
-    packingData,
-    dataChange,
     example2,
     useDoc,
 } from '../document2.0/markdown'
@@ -43,9 +41,7 @@ export const versionList = [
             {title: '快速使用', key: 'useDoc', md: useDoc},
             {title: '升级内容', key: 'upgrade', md: upgrade},
             {title: '示例', key: 'example', md: example2},
-            {title: '统一上下文', key: 'context', md: context},
-            {title: '自动组装数据', key: 'packingData', md: packingData},
-            {title: '监听数据变化', key: 'dataChange', md: dataChange},
+            {title: '新特性', key: 'context', md: context},
             {title: '性能优化', key: 'performance', md: performance},
             {title: '在线编辑', key: 'editing', md: editing},
         ]

@@ -11,11 +11,12 @@ export default class Base extends React.Component {
         }
     }
     render() {
+        const initData = {
+            name: 'name-init',
+            type: 'type-init',
+        }
         return <div className="data-packing-base">
-            <JSXForm value={{
-                    name: 'name-init',
-                    type: 'type-init',
-                }} 
+            <JSXForm value={initData} 
                 onChange={(valid, data) => this.setState({outputData: data})}>
                 <Input v-model="name" v-label="name" />
                 <Input v-model="type" v-init="date" v-label="type" />
